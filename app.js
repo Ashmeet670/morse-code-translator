@@ -9,15 +9,35 @@ function translationModeChange(btn){
     console.log(translateMode)
 }
 
+
 function buttonClick(btn){
     btn.classList.add("buttonClickAnimate")
 
     setTimeout(() => {
         btn.classList.remove("buttonClickAnimate")
-    }, 400);
+    }, 350);
 }
 
 
-function translates(){
+function translateButton(){
+    console.log(translateMode)
+    if (translateMode == "textMorse"){
+        translatesTextMorse()
+    }
+    else if (translateMode == "morseText"){
+        translatesMorseText()
+    }
+}
+
+
+text = ""
+morse = ""
+
+function translatesTextMorse(){
+    text = document.getElementById("inputTextBox").value
+    console.log(text)
+}
+
+function translatesMorseText(){
     console.log("e")
 }
