@@ -26,7 +26,7 @@
     <body>
 
         <div class="d-flex justify-content-center border-bottom border-dark ">
-            <text class="title">Morse Code Translator</text>
+            <text class="title">Morse Code Translator </text>
         </div>
         <div class="d-flex justify-content-center mt-4 ">
             <text id="textMorse" onclick="translationModeChange(this)" class="translatorSelect mx-3 px-4 pt-1 translatorButtonSelected">Text to Morse</text>
@@ -34,7 +34,7 @@
         </div>
 
         <div class="d-flex flex-column justify-content-center mt-5 ">
-            <textarea class="mx-auto" name="" id="inputTextBox" placeholder='Type morse code here, use "." key for a dot and "-" key for a dash'></textarea>
+            <textarea class="mx-auto" name="" id="inputTextBox" placeholder='Type morse code here, use "." key for a dot and "-" key for a dash' required></textarea>
             <text onclick="translateButton();buttonClick(this)" class="translate mx-3 px-4 pt-1 mx-auto mt-3">Translate</text>
 
         </div>
@@ -43,6 +43,7 @@
             <text class="title2 mx-auto">Result</text>
 
             <div class="mx-auto" id="outputText">
+
             </div>
         </div>
 
