@@ -33,9 +33,18 @@
             <text id="morseText" onclick="translationModeChange(this)" class="translatorSelect mx-3 px-4 pt-1">Morse to Text</text>
         </div>
 
+        <div class="d-flex flex-column justify-content-center mt-5 ">
+            <textarea class=" mx-auto" name="" id="inputTextBox" placeholder='Type morse code here, use "." key for a dot and "-" key for a dash'></textarea>
+            <text onclick="translates();buttonClick(this)" class="translate mx-3 px-4 pt-1 mx-auto mt-3">Translate</text>
 
+        </div>
 
+        <div id="translatedResult" class="d-flex flex-column my-5 d-none">
+            <text class="title2 mx-auto">Result</text>
 
+            <div class="mx-auto" id="outputText">
+            </div>
+        </div>
 
 
 
