@@ -19,3 +19,4 @@ Rules:
 
 ## On mobile devices
 While typing morse code, mobile devices automatically convert 2 "-" put togeather into one single long dash, which is an invalid input for the program and thus, not cool
+This is a user device setting and I can do nothing about it
