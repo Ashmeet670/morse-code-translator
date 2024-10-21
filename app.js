@@ -5,9 +5,13 @@ function translationModeChange(btn) {
     document.getElementById("textMorse").classList.remove("translatorButtonSelected")
 
     btn.classList.add("translatorButtonSelected")
+
     translateMode = btn.id
 }
 
+const inputText = {
+    ""
+}
 
 function buttonClick(btn) {
     btn.classList.add("buttonClickAnimate")
@@ -44,13 +48,13 @@ text = ""
 morse = ""
 
 function translatesTextMorse() {
-    if(document.getElementById("inputTextBox").value.toUpperCase() != ""){
+    if (document.getElementById("inputTextBox").value.toUpperCase() != "") {
         text = document.getElementById("inputTextBox").value.toUpperCase()
         morseT = ""
         for (i in text) {
             morseT += `${alphabetMorse[text[i]]}` + "&nbsp;&nbsp;"
         }
-    
+
         document.getElementById("outputText").innerHTML = ""
         document.getElementById("outputText").insertAdjacentHTML("beforeend", morseT)
         document.getElementById("translatedResult").classList.remove("d-none")
@@ -60,5 +64,5 @@ function translatesTextMorse() {
 
 
 function translatesMorseText() {
-   
+
 }
