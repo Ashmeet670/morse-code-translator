@@ -1,5 +1,5 @@
 # Morse Code Translator 
-*look at the functionality not the design, I ain't a designer*
+*Look at the functionality not the design, I ain't a designer*
 
 ## Text To Morse
 Type the text you want to translate into morse code,
