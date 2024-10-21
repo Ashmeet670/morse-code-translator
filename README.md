@@ -15,3 +15,7 @@ Rules:
  - As of now the program can only convert alphabets and number forms of code into text
  - Add __single__ space between individual characters/alphabets and __double__ space between individual words
  - Dont use any special characters/puntuation marks
+
+
+## On mobile devices
+While typing morse code, mobile devices automatically convert 2 "-" put togeather into one single long dash, which is an invalid input for the program and thus, not cool
