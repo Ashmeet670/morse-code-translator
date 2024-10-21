@@ -8,7 +8,7 @@ Rules:
  - Numbers are allowed (0-9)
  - Rest all characters such as special symbols, puntuation marks etc are not allowed and will give an error
 
-## Text To Morse
+## Morse To Text
 Type the morse code you want to trnaslate into text.
 Rules:
  - Only "." and  "-" are allowed
