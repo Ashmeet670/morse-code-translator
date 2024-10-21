@@ -1,4 +1,4 @@
-#Morse Code Translator
+# Morse Code Translator 
 *look at the functionality not the design, I ain't a designer*
 
 ## Text To Morse
