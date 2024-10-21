@@ -1,18 +1,28 @@
 translateMode = "textMorse"
 
+const previousTextInputValue = {
+    "morseText": "",
+    "textMorse": ""
+}
+
 const inputText = {
-    "morseText": 'Type morse code here, use "." key for a dot and "-" key for a dash',
+    "morseText": 'Type morse code here, use "." key for a dot and "-" key for a dash, (2 spaces) for space between words and (1 space) for space between alphabets',
     "textMorse": 'Type text here, use only alphabets (a-z) and numbers (0-9)'
 }
 
 function translationModeChange(btn) {
+
+
     document.getElementById("morseText").classList.remove("translatorButtonSelected")
     document.getElementById("textMorse").classList.remove("translatorButtonSelected")
 
     btn.classList.add("translatorButtonSelected")
 
+    previousTextInputValue[translateMode] = document.getElementById("inputTextBox").value
     translateMode = btn.id
     document.getElementById("inputTextBox").placeholder = inputText[translateMode]
+    document.getElementById("inputTextBox").value = previousTextInputValue[translateMode]
+    document.getElementById("outputText").innerHTML = ""
 
 }
 
@@ -99,8 +109,8 @@ const morseAlphabet = {
     '.--.': 'P', '--.-': 'Q', '.-.': 'R', '...': 'S', '-': 'T',
     '..-': 'U', '...-': 'V', '.--': 'W', '-..-': 'X', '-.--': 'Y',
     '--..': 'Z', '-----': '0', '.----': '1', '..---': '2', '...--': '3',
-    '....-': '4', '.....': '5', '-....': '6', '--...': '7', '---..': '8', 
-    '----.': '9'
+    '....-': '4', '.....': '5', '-....': '6', '--...': '7', '---..': '8',
+    '----.': '9', "": "&nbsp;"
 };
 
 
@@ -113,28 +123,37 @@ function translatesMorseText() {
         text = document.getElementById("inputTextBox").value
 
         for (i in text) {
-            if (![".","-"," "].includes(text[i])) {
-                console.log("E")
+            if (![".", "-", " "].includes(text[i])) {
+                console.log("invalid nput ")
                 document.getElementById("outputText").textContent = "Invalid Input!"
                 valid = false
                 break
             }
         }
-
         textL = text.split(" ")
-        console.log(textL)
+
+        for (i in textL) {
+            if (morseAlphabet[textL[i]] == undefined) {
+                document.getElementById("outputText").textContent = `"${textL[i]}" chacacter does not exist in morse code, please try again`
+                valid = false
+                break
+            }
+        }
+
 
         if (valid) {
 
             textFinal = ""
-            console.log(valid, "e")
+            console.log("e valid in")
 
-            for (i in text) {
-                console.log(morseAlphabet[text[i]])
+            for (i in textL) {
+                if (morseAlphabet[textL[i]] != undefined) {
+                    textFinal += `${morseAlphabet[textL[i]]}`
+                }
+      
             }
-
             document.getElementById("outputText").innerHTML = ""
-            document.getElementById("outputText").insertAdjacentHTML("beforeend", textFinal)
+            document.getElementById("outputText").insertAdjacentHTML("beforeend", textFinal.toLowerCase())
         }
 
     }
