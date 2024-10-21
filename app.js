@@ -44,25 +44,21 @@ text = ""
 morse = ""
 
 function translatesTextMorse() {
-    text = document.getElementById("inputTextBox").value.toUpperCase()
-    morseT = ""
-    for (i in text) {
-        morseT += `${alphabetMorse[text[i]]}` + "&nbsp;&nbsp;"
+    if(document.getElementById("inputTextBox").value.toUpperCase() != ""){
+        text = document.getElementById("inputTextBox").value.toUpperCase()
+        morseT = ""
+        for (i in text) {
+            morseT += `${alphabetMorse[text[i]]}` + "&nbsp;&nbsp;"
+        }
+    
+        document.getElementById("outputText").innerHTML = ""
+        document.getElementById("outputText").insertAdjacentHTML("beforeend", morseT)
+        document.getElementById("translatedResult").classList.remove("d-none")
     }
-
-    document.getElementById("outputText").innerHTML = ""
-    document.getElementById("outputText").insertAdjacentHTML("beforeend", morseT)
-    document.getElementById("translatedResult").classList.remove("d-none")
 }
 
-function translatesMorseText() {
-    text = document.getElementById("inputTextBox").value.toUpperCase()
-    morseT = ""
-    for (i in text) {
-        morseT += `${alphabetMorse[text[i]]}` + "&nbsp;&nbsp;"
-    }
 
-    document.getElementById("outputText").innerHTML = ""
-    document.getElementById("outputText").insertAdjacentHTML("beforeend", morseT)
-    document.getElementById("translatedResult").classList.remove("d-none")
+
+function translatesMorseText() {
+   
 }
