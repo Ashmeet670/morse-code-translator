@@ -1,5 +1,10 @@
 translateMode = "textMorse"
 
+const inputText = {
+    "morseText": 'Type morse code here, use "." key for a dot and "-" key for a dash',
+    "textMorse": 'Type text here, use only alphabets (a-z) and numbers (0-9)'
+}
+
 function translationModeChange(btn) {
     document.getElementById("morseText").classList.remove("translatorButtonSelected")
     document.getElementById("textMorse").classList.remove("translatorButtonSelected")
@@ -7,11 +12,10 @@ function translationModeChange(btn) {
     btn.classList.add("translatorButtonSelected")
 
     translateMode = btn.id
+    document.getElementById("inputTextBox").placeholder = inputText[translateMode]
+
 }
 
-const inputText = {
-    ""
-}
 
 function buttonClick(btn) {
     btn.classList.add("buttonClickAnimate")
@@ -44,20 +48,44 @@ const alphabetMorse = {
     " ": "&nbsp;&nbsp;&nbsp;"
 };
 
+const convertable = [
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+];
+
 text = ""
 morse = ""
 
 function translatesTextMorse() {
+    valid = true
+    document.getElementById("outputText").innerHTML = ""
+
     if (document.getElementById("inputTextBox").value.toUpperCase() != "") {
         text = document.getElementById("inputTextBox").value.toUpperCase()
-        morseT = ""
+
+
         for (i in text) {
-            morseT += `${alphabetMorse[text[i]]}` + "&nbsp;&nbsp;"
+            if (!convertable.includes(text[i]) && !convertable.includes(Number(text[i]))) {
+                console.log("E")
+                document.getElementById("outputText").textContent = "Invalid Input!"
+                valid = false
+                break
+            }
         }
 
-        document.getElementById("outputText").innerHTML = ""
-        document.getElementById("outputText").insertAdjacentHTML("beforeend", morseT)
-        document.getElementById("translatedResult").classList.remove("d-none")
+        if (valid) {
+
+            textFinal = ""
+            console.log(valid, "e")
+
+            for (i in text) {
+                console.log(alphabetMorse[text[i]])
+                textFinal += `${alphabetMorse[text[i]]}` + "&nbsp;&nbsp;"
+            }
+
+            document.getElementById("outputText").innerHTML = ""
+            document.getElementById("outputText").insertAdjacentHTML("beforeend", textFinal)
+        }
+
     }
 }
 
