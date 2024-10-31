@@ -64,19 +64,19 @@ const convertable = [
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 ];
 
-text = ""
-morse = ""
+text1 = ""
+morse1 = ""
 
 function translatesTextMorse() {
     valid = true
     document.getElementById("outputText").innerHTML = ""
 
     if (document.getElementById("inputTextBox").value != "") {
-        text = document.getElementById("inputTextBox").value.toUpperCase()
+        text1 = document.getElementById("inputTextBox").value.toUpperCase()
 
 
-        for (i in text) {
-            if (!convertable.includes(text[i]) && !convertable.includes(Number(text[i]))) {
+        for (i in text1) {
+            if (!convertable.includes(text1[i]) && !convertable.includes(Number(text1[i]))) {
                 console.log("E")
                 document.getElementById("outputText").textContent = "Invalid Input!"
                 valid = false
@@ -86,16 +86,16 @@ function translatesTextMorse() {
 
         if (valid) {
 
-            textFinal = ""
+            morse1 = ""
             console.log(valid, "e")
 
-            for (i in text) {
-                console.log(alphabetMorse[text[i]])
-                textFinal += `${alphabetMorse[text[i]]}` + "&nbsp;&nbsp;"
+            for (i in text1) {
+                console.log(alphabetMorse[text1[i]])
+                morse1 += `${alphabetMorse[text1[i]]}` + "&nbsp;&nbsp;"
             }
 
             document.getElementById("outputText").innerHTML = ""
-            document.getElementById("outputText").insertAdjacentHTML("beforeend", textFinal)
+            document.getElementById("outputText").insertAdjacentHTML("beforeend", morse1)
         }
 
     }
@@ -114,27 +114,29 @@ const morseAlphabet = {
 };
 
 
+text2 = ""
+morse2 = ""
 
 function translatesMorseText() {
     valid = true
     document.getElementById("outputText").innerHTML = ""
 
     if (document.getElementById("inputTextBox").value != "") {
-        text = document.getElementById("inputTextBox").value
+        morse2 = document.getElementById("inputTextBox").value
 
-        for (i in text) {
-            if (![".", "-", " "].includes(text[i])) {
+        for (i in morse2) {
+            if (![".", "-", " "].includes(morse2[i])) {
                 console.log("invalid nput ")
                 document.getElementById("outputText").textContent = "Invalid Input!"
                 valid = false
                 break
             }
         }
-        textL = text.split(" ")
+        morseL = morse2.split(" ")
 
-        for (i in textL) {
-            if (morseAlphabet[textL[i]] == undefined) {
-                document.getElementById("outputText").textContent = `"${textL[i]}" chacacter does not exist in morse code, please try again`
+        for (i in morseL) {
+            if (morseAlphabet[morseL[i]] == undefined) {
+                document.getElementById("outputText").textContent = `"${morseL[i]}" chacacter does not exist in morse code, please try again`
                 valid = false
                 break
             }
@@ -143,18 +145,23 @@ function translatesMorseText() {
 
         if (valid) {
 
-            textFinal = ""
+            text2 = ""
             console.log("e valid in")
 
-            for (i in textL) {
-                if (morseAlphabet[textL[i]] != undefined) {
-                    textFinal += `${morseAlphabet[textL[i]]}`
+            for (i in morseL) {
+                if (morseAlphabet[morseL[i]] != undefined) {
+                    text2 += `${morseAlphabet[morseL[i]]}`
                 }
-      
+
             }
             document.getElementById("outputText").innerHTML = ""
-            document.getElementById("outputText").insertAdjacentHTML("beforeend", textFinal.toLowerCase())
+            document.getElementById("outputText").insertAdjacentHTML("beforeend", text2.toLowerCase())
         }
 
     }
+}
+
+
+function copyButton() {
+
 }
