@@ -3,7 +3,6 @@
 
 * {
     font-family: "Aldrich", sans-serif;
-    color: #60712f;
     user-select: none;
     -webkit-user-select: none;
 }
@@ -16,8 +15,8 @@ body {
 .title {
     font-family: "Black Ops One", system-ui;
     font-size: clamp(40px, 5vw, 60px);
+    color: #60712f;
 }
-
 
 .translatorSelect {
     color: black;
@@ -52,7 +51,6 @@ body {
 
 #inputTextBox::placeholder {
     color: rgb(40, 40, 40);
-
 }
 
 .translate {
@@ -93,13 +91,53 @@ body {
     resize: none;
     font-size: clamp(20px, 1.3vw, 33px);
     color: black;
-    user-select: auto;
-    -webkit-user-select: auto;
 }
 
 .translationBox {
     width: 45%;
 }
+
+
+.alertCardTextCopied {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #7a9855;
+    width: fit-content;
+    font-size: clamp(14px, 2vw, 14px);
+    animation: fade-in-down 0.8s 0s forwards;
+}
+
+@keyframes fade-in-down {
+    0% {
+        transform: translateX(300px);
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+
+    }
+}
+
+.exitAnimation {
+    animation: exitAnimation 0.4s 0s forwards;
+}
+
+@keyframes exitAnimation {
+    0% {
+        transform: translateY(0px);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(50px);
+        opacity: 0.3;
+
+    }
+}
+
 
 /* sm */
 @media only screen and (max-width:576px) {
@@ -137,6 +175,7 @@ body {
     .translationBox {
         width: 75%;
     }
+
     #inputTextBox {
         font-size: clamp(15px, 3vw, 33px);
     }

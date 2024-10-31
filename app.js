@@ -5,6 +5,11 @@ const previousTextInputValue = {
     "textMorse": ""
 }
 
+const toMode = {
+    "morseText": "Text",
+    "textMorse": "Morse"
+}
+
 const inputText = {
     "morseText": 'Type morse code here, use "." key for a dot and "-" key for a dash, (2 spaces) for space between words and (1 space) for space between alphabets',
     "textMorse": 'Type text here, use only alphabets (a-z) and numbers (0-9)'
@@ -24,6 +29,10 @@ function translationModeChange(btn) {
     document.getElementById("inputTextBox").value = previousTextInputValue[translateMode]
     document.getElementById("outputText").innerHTML = ""
 
+
+    document.getElementsByName("copyBtn").forEach(btn => {
+        btn.innerText = `Copy ${toMode[translateMode]}`
+    });
 }
 
 
@@ -60,6 +69,19 @@ const alphabetMorse = {
     " ": "   "
 };
 
+const alphabetMorseC = {
+    'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.',
+    'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
+    'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---',
+    'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
+    'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--',
+    'Z': '--..', '0': '-----', '1': '.----', '2': '..---', '3': '...--',
+    '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..',
+    '9': '----.', ' ': '  '
+}
+
+
+
 const convertable = [
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 ];
@@ -72,6 +94,7 @@ function translatesTextMorse() {
     document.getElementById("outputText").innerHTML = ""
 
     if (document.getElementById("inputTextBox").value != "") {
+        morse1 = ""
         text1 = document.getElementById("inputTextBox").value.toUpperCase()
 
 
@@ -86,16 +109,17 @@ function translatesTextMorse() {
 
         if (valid) {
 
-            morse1 = ""
+            morseNB = ""
             console.log(valid, "e")
 
             for (i in text1) {
                 console.log(alphabetMorse[text1[i]])
-                morse1 += `${alphabetMorse[text1[i]]}` + "&nbsp;&nbsp;"
+                morseNB += `${alphabetMorse[text1[i]]}` + "&nbsp;&nbsp;"
+                morse1 += `${alphabetMorseC[text1[i]]} `
             }
 
             document.getElementById("outputText").innerHTML = ""
-            document.getElementById("outputText").insertAdjacentHTML("beforeend", morse1)
+            document.getElementById("outputText").insertAdjacentHTML("beforeend", morseNB)
         }
 
     }
@@ -122,6 +146,7 @@ function translatesMorseText() {
     document.getElementById("outputText").innerHTML = ""
 
     if (document.getElementById("inputTextBox").value != "") {
+        text2 = ""
         morse2 = document.getElementById("inputTextBox").value
 
         for (i in morse2) {
@@ -163,5 +188,64 @@ function translatesMorseText() {
 
 
 function copyButton() {
+    if (translateMode == "textMorse") {
+        navigator.clipboard.writeText(morse1)
+        addAlert()
+    }
+    else if (translateMode == "morseText") {
+        navigator.clipboard.writeText(text2)
+        addAlert()
+    }
+}
+
+alertShown = false
+function addAlert() {
+
+    if (!alertShown) {
+        document.getElementById("alertDiv").insertAdjacentHTML("beforeend",
+            `
+                  <div id="alertCopy"  class="alertCardTextCopied d-flex px-3 py-2 rounded-3 align-items-center ">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" fill="currentColor"
+                      class="bi bi-check-circle" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                      <path
+                          d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05" />
+                  </svg>
+      
+                  <text class="mx-1">Copied to clipboard</text>
+              </div>
+              `
+        )
+        alertShown = true
+        setTimeout(() => {
+            document.getElementById("alertCopy").classList.add("exitAnimation")
+            alertShown = false
+            setTimeout(() => {
+                document.getElementById("alertDiv").innerHTML = ""
+            }, 450);
+
+        }, 3000);
+    }
+    else {
+        document.getElementById("alertDiv").innerHTML = ""
+        document.getElementById("alertDiv").insertAdjacentHTML("beforeend",
+            `
+                <div id="alertCopy"  class="alertCardTextCopied d-flex px-3 py-2 rounded-3 align-items-center ">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" fill="currentColor"
+                      class="bi bi-check-circle" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                      <path
+                          d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05" />
+                  </svg>
+      
+                  <text class="mx-1">Copied to clipboard</text>
+              </div>
+              `
+        )
+        alertShown = true
+
+    }
+
+
 
 }
