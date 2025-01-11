@@ -19,19 +19,23 @@ body {
 }
 
 .translatorSelect {
-    color: black;
-    font-size: clamp(18px, 1.3vw, 40px);
+    box-sizing: border-box;
+    font-size: clamp(18px, 1.2vw, 26px);
     width: fit-content;
-    background-color: #607744;
-    border: 3px solid #465732;
-    box-shadow: 0px 5px 0px #465732;
     cursor: pointer;
     transition: 0.2s;
+    border-bottom: 4px solid #60712f00;
+    filter: brightness(0.9);
 }
 
 .translatorButtonSelected {
     filter: brightness(1.3);
-    scale: 1.1;
+    border-bottom: 4px solid #60712f;
+}
+
+.modeSelect{
+    color: #60712f;
+    background-color: #28352f;
 }
 
 #inputTextBox {
@@ -189,7 +193,7 @@ body {
     }
 
     .translatorSelect {
-        font-size: clamp(18px, 2.5vw, 40px);
+        font-size: clamp(21px, 3vw, 26px);
     }
 }
 
